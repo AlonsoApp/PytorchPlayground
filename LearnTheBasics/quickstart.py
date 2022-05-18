@@ -2,8 +2,7 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets
-from torchvision.transforms import ToTensor, Lambda, Compose
-import matplotlib.pyplot as plt
+from torchvision.transforms import ToTensor
 
 # Download training data from open datasets.
 training_data = datasets.FashionMNIST(
@@ -33,7 +32,7 @@ for X, y in test_dataloader:
     break
 
 # Get cpu or gpu device for training.
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = 'cuda' if torch.cuda.is_available() else 'mps' if torch.has_mps else 'cpu'
 print("Using {} device".format(device))
 
 # Define model
